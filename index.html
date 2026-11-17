@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción CBTis No. 5</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="encabezado">
+    <h1>CBTis No. 5</h1>
+    <h2>Formato de Inscripción</h2>
+    <p>Bienvenido al CBTis No. 5. Completa el siguiente formulario con tus datos personales y académicos para realizar tu inscripción.</p>
+</header>
+
+<div class="contenedor">
+
+<form id="formulario">
+
+    <h3 class="titulo-seccion">DATOS DEL ASPIRANTE</h3>
+
+    <div class="formulario">
+
+        <div class="campo">
+            <label>Apellido paterno:</label>
+            <input type="text" id="apellidoPaterno" required>
+        </div>
+
+        <div class="campo">
+            <label>Apellido Materno:</label>
+            <input type="text" id="apellidoMaterno" required>
+        </div>
+
+        <div class="campo">
+            <label>Nombre(s):</label>
+            <input type="text" id="nombre" required>
+        </div>
+
+        <div class="campo">
+            <label>CURP:</label>
+            <input type="text" id="curp" maxlength="18" minlength="18" required>
+        </div>
+
+        <div class="campo">
+            <label>Fecha de nacimiento:</label>
+            <input type="date" id="fecha" required>
+        </div>
+
+        <div class="campo">
+            <label>Sexo:</label>
+            <div class="opciones">
+                <label><input type="radio" name="sexo" value="Femenino" required> Femenino</label>
+                <label><input type="radio" name="sexo" value="Masculino"> Masculino</label>
+                <label><input type="radio" name="sexo" value="Otro"> Otro</label>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Lugar de nacimiento:</label>
+            <input type="text" id="lugar" required>
+        </div>
+
+        <div class="campo">
+            <label>Número de celular:</label>
+            <input type="tel" id="celular" maxlength="10" pattern="[0-9]{10}" required>
+        </div>
+
+        <div class="campo">
+            <label>Correo electrónico:</label>
+            <input type="email" id="correo" required>
+        </div>
+
+    </div>
+
+    <h3 class="titulo-seccion">DATOS ACADÉMICOS</h3>
+
+    <div class="formulario">
+
+        <div class="campo">
+            <label>Secundaria:</label>
+            <input type="text" id="secundaria" required>
+        </div>
+
+        <div class="campo">
+            <label>CCT:</label>
+            <input type="text" id="cct" required>
+        </div>
+
+        <div class="campo">
+            <label>Promedio:</label>
+            <input type="number" id="promedio" min="0" max="10" step="0.1" required>
+        </div>
+
+        <div class="campo">
+            <label>Año de egreso:</label>
+            <input type="number" id="egreso" min="2000" max="2100" required>
+        </div>
+
+        <div class="campo">
+            <label>Turno:</label>
+            <div class="opciones">
+                <label><input type="radio" name="turno" value="Matutino" required> Matutino</label>
+                <label><input type="radio" name="turno" value="Vespertino"> Vespertino</label>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>¿Estuvo inscrito en otra institución de educación media superior?</label>
+            <div class="opciones">
+                <label><input type="radio" name="inscrito" value="Sí" required> Sí</label>
+                <label><input type="radio" name="inscrito" value="No"> No</label>
+            </div>
+        </div>
+
+        <div class="campo completo">
+            <label>Carrera:</label>
+            <select id="carrera" required>
+                <option value="">Selecciona una carrera</option>
+                <option value="Programación">Programación</option>
+                <option value="Contabilidad">Contabilidad</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Mecánica Industrial">Mecánica Industrial</option>
+                <option value="Ofimática">Ofimática</option>
+                <option value="Otra">Otra</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="botones">
+        <button type="submit" class="btn-enviar">ENVIAR INSCRIPCIÓN</button>
+        <button type="reset" class="btn-limpiar">LIMPIAR FORMULARIO</button>
+    </div>
+
+</form>
+</div>
+
+<section class="registros">
+
+    <h2 class="titulo-seccion">REGISTROS DE ALUMNOS INSCRITOS</h2>
+
+    <div class="contador" id="contador">
+        Total de alumnos registrados: 0
+    </div>
+
+    <div class="tabla-contenedor">
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Apellidos</th>
+                    <th>Nombre</th>
+                    <th>CURP</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Secundaria</th>
+                    <th>Promedio</th>
+                    <th>Turno</th>
+                    <th>Carrera</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaRegistros"></tbody>
+        </table>
+    </div>
+
+    <div class="botones">
+        <button class="btn-borrar-todo" onclick="eliminarTodos()">
+            ELIMINAR TODOS LOS REGISTROS
+        </button>
+    </div>
+
+</section>
+
+<footer>
+    <p>CBTis No. 5 | Sistema de Inscripciones</p>
+    <p>Todos los derechos reservados © 2026</p>
+</footer>
+
+<!-- Modal personalizado para alertas y confirmaciones -->
+<div class="modal-fondo" id="modalFondo">
+    <div class="modal-caja">
+        <p id="modalMensaje"></p>
+        <div class="modal-botones" id="modalBotones"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
